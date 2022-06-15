@@ -5,30 +5,36 @@ by Nigel Poulton & Pushkar Joglekar
 
 ### Control Plane and Worker Nodes
 
-  - Control Plane node runs a collection of system services that make up the control plane of the cluster. Some of theses services are:
+  - **Control Plane**: 
 
-    - **API Server**:
+    - Nodes runs a collection of system services that make up the control plane of the cluster. Some of theses services are:
 
-    - **Cluster Store**:
+      - **API Server**:
 
-      - etcd
+        - Control plane front-end, all instructions and communication pass through it. By default, it exposes a RESTFull endpoints on port 443.
 
-    - **Controller manager and controllers**: 
+      - **Cluster Store**:
 
-      - Implements all the background controllers that monitor cluster components and respond to events.
+        - etcd
 
-      - Controller of controllers
+      - **Controller manager and controllers**: 
 
-      - Deployment controller
+        - Implements all the background controllers that monitor cluster components and respond to events.
 
-      - StatefulSet controller
+        - Controller of controllers
 
-      - ReplicaSet controller
+        - Deployment controller
 
-    - **Scheduler**:
-      
-      - Responsible for piking the nodes to run tasks, to do that the scheduler run a complex algorithm to get a "ranking" about all of the nodes available. To do this "rank" the scheduler check if the node is capable to run the task.
+        - StatefulSet controller
 
-    - **Cloud Controller Manager**:
+        - ReplicaSet controller
 
-      - When our K8s is running in a public could, teh control planning will contain this service helping the integration with the cloud services.
+      - **Scheduler**:
+        
+        - Responsible for piking the nodes to run tasks, to do that the scheduler run a complex algorithm to get a "ranking" about all of the nodes available. To do this "rank" the scheduler check if the node is capable to run the task.
+
+      - **Cloud Controller Manager**:
+
+        - When our K8s is running at a public could, the control planning will contain this service helping the integration with the cloud services.
+
+  - **Worker Nodes**:
