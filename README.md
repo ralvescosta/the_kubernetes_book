@@ -57,6 +57,7 @@ by Nigel Poulton & Pushkar Joglekar
       - **Kube-proxy**:
 
         - Responsible for local cluster networking.
+
   - **Kubernetes DNS**:
 
     - Internal DNS service based on CoreDNS
@@ -64,5 +65,45 @@ by Nigel Poulton & Pushkar Joglekar
   - **Packaging apps for Kubernetes**:
 
     1. Packaged as a container
+
     2. Wrapped in a Pod
+
     3. Deployed via a declarative manifest file
+
+  - **The declarative model and desired state**:
+
+    - Declare de desired state
+
+    - Post it to the API
+
+    - K8S implements the desired state on the cluster
+
+    - A controller makes sure the observer state of the application does not vary from the desired state.
+
+  - **Pods**:
+
+    - In the K8S the atomic unit of scheduling is the Pod.
+
+    - Inside the Pod we could have one container or some containers. It's more normal to had one container inside a Pod
+
+  - **Pod anatomy**:
+
+    - Keeping it high level, Pods ring-fence an area of the host OS, build a network stack, create a bunch of kernel namespaces, and run one or mode containers. If you're running multiple containers in a pod, they all share the same Pod environment.
+
+    - If two containers in the same Pod need to talk to each other they can use Pod's localhost interface.
+    
+  - **Pod lifecycle**:
+
+    - Pods are mortal. They're created, they live and they die. If the die unexpectedly you do not bring then back to life. Instead K8S stars a new one in its place.
+
+  - **Pod immutability**:
+
+    - Pods are also immutable - this means you do not change them once they're running. For example, once a Pod is running, you never log on to it and change or update irs configuration. If you need to change or update it, you replace it with a new one. Whenever we talk about updating Pods, we really mean delete the old one and replace it with a new one.
+
+  - **Deployments**:
+
+    - Deployment is a higher-level K8S object that wraps around a Pod and adds features such as self-healing, scaling, zero-downtime rollout and versioned rollbacks.
+  
+  - **Service objects and stable networking**:
+
+    - Because of the Pod volatility we need to use a tool to help to handle the network traffic. Every time a new Pod is created or a old Pod is deleted we need to now which Pod we can communicate and K8S use the Service to do that. the Service provides a reliable name and IP it's also load-balancing the request to the "Same Pods"
