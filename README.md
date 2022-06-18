@@ -38,3 +38,31 @@ by Nigel Poulton & Pushkar Joglekar
         - When our K8s is running at a public could, the control planning will contain this service helping the integration with the cloud services.
 
   - **Worker Nodes**:
+
+    Where user applications run. They do three things
+
+      1. Watch the API server for new work assignments
+      2. Execute work assignments
+      3. Report back to the control plane
+
+    The major components of a worker node are:
+
+      - **Kubelet**:
+
+        - The main K8S agent and runs every worker node.
+        - Execute the control plane tasks and report the results
+
+      - **Container runtime**:
+
+      - **Kube-proxy**:
+
+        - Responsible for local cluster networking.
+  - **Kubernetes DNS**:
+
+    - Internal DNS service based on CoreDNS
+  
+  - **Packaging apps for Kubernetes**:
+
+    1. Packaged as a container
+    2. Wrapped in a Pod
+    3. Deployed via a declarative manifest file
