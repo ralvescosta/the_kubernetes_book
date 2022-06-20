@@ -107,3 +107,18 @@ by Nigel Poulton & Pushkar Joglekar
   - **Service objects and stable networking**:
 
     - Because of the Pod volatility we need to use a tool to help to handle the network traffic. Every time a new Pod is created or a old Pod is deleted we need to now which Pod we can communicate and K8S use the Service to do that. the Service provides a reliable name and IP it's also load-balancing the request to the "Same Pods"
+
+## 3: Getting Kubernetes
+
+  - **Kubectl**:
+
+    - The kubectl configuration file is called config and lives in a hidden directory called kub in your home directory ($HOME/.kube/config) with definitions for:
+
+      - Clusters
+        - A single kubectl can manage multiple cluster.
+      - Users (credentials)
+        - You can have a lot of users configured.
+      - Contexts
+        - Group together clusters and users under a friendly name. Ex: you might have a context called *ops-prod* that combines the *ops* user credentials with the *prod* cluster definition. If you use kubectl with this context, you'll be sending a commands to the API server of the *prod* cluster as the *ops* user. You can view your configs using this command: *kubectl config view*
+  
+  
