@@ -121,4 +121,69 @@ by Nigel Poulton & Pushkar Joglekar
       - Contexts
         - Group together clusters and users under a friendly name. Ex: you might have a context called *ops-prod* that combines the *ops* user credentials with the *prod* cluster definition. If you use kubectl with this context, you'll be sending a commands to the API server of the *prod* cluster as the *ops* user. You can view your configs using this command: *kubectl config view*
   
+## 4: Working with Pods
+
+  - **Pod theory**:
+
+    - The atomic unit of scheduling in K8S is the Pod.
+
+    - The process of building and running an app on Kubernetes is roughly as follows:
+
+      1. Write you app/code
+      2. Package it as container image
+      3. Wrap the container image in a Pod
+      4. Run it on Kubernetes
+
+  - **Pods augment containers**:
+
+    - Labels and annotations
+    - Restart policies
+    - Proves (startup probes, readiness probes, liveness probes and potentially more)
+    - Affinity and anti-affinity rules
+    - Termination control
+    - Security policies
+    - Resource requests and limits
   
+    - The command bellow list all possible Pod attributes:
+
+      ```bash
+        kubectl explain pods
+
+        kubectl explain pods --recursive
+      ```
+
+    - The command bellow show the specific attributes documentation:
+
+      ```bash
+        kubectl explain pod.spec.restartPolicy
+      ```
+
+    - Some Pods features:
+
+      - *Label*: Let you group Pods and associate then with other objects in powerful way.
+      - *Annotations*: Let you add experimental features and integrations with 3rd-party tools and services.
+      - *Probes*: Let you test the health and status of Pods and the apps they run. This enable advanced scheduling, updates and more.
+      - *Affinity and Anti-Affinity*: Rules give you control over where in cluster Pods are allowed to run.
+      - *Termination control*: Lets you to gracefully terminate Pods and the applications they run.
+      - *Security polices*: Let you enforce security features.
+      - *Resource requests and limits*: Let you specify minimum and maximum values for things like CPU, memory and disk IO.
+
+    - How to declare a Pod Object:
+
+      ```yml
+        apiVersion: v1
+        kind: Pod
+        metadata:
+          name: hello-pod
+          labels:
+            zone: prod
+            version: v1
+        spec:
+          container:
+            - name: hello-ctr
+              image: nigelpoulton/k8sbook:1.0
+              ports:
+              - containerPort: 8080
+      ```
+
+  - **Pods enable resource sharing**:
