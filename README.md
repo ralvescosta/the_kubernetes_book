@@ -187,3 +187,46 @@ by Nigel Poulton & Pushkar Joglekar
       ```
 
   - **Pods enable resource sharing**:
+    
+    - Pods provide a shared execution environment for one or more containers:
+
+      - shared filesystem
+      - shared network stack
+      - shared memory
+      - shared volumes
+
+  - **Static Pods vs controllers**:
+
+    - There are two ways to deploy pods:
+
+      - Directly via a Pod manifest (static pods)
+      - Indirectly via controller
+    
+    - Pods deploy directly have no super-powers such as self-healing, scaling or rolling updates because the're only monitored and managed by the worker node's kubelet process, there is no control plane process watching and capable of stating a new one on a different node.
+    
+    - Pods deployed via controllers have all the benefits of being monitored and managed by a highly-available controller running on the control plane.
+  
+  - **Deploying Pods**:
+
+    - The process of deploying a Pod to Kubernetes is as follows.
+
+      1. Define it in a YAML manifest file
+      2. Post the yaml to the API server
+      3. The API server authenticates and authorizes the request
+      4. The configuration (YAML) is validated
+      5. The scheduler deploy the Pod to a healthy worker node with enough available resources
+      6. The local kubelet monitors it
+
+  - **Pods and shared networking**:
+
+    - Each pod creates its own network namespace. This means aa Pod has its own IP address, a single range of TCP and UDP pots and a single routing table.
+
+  - **The pod network**:
+
+    - On the topic of networking, every pod gets irs own unique IP address that's fully routable on an internal K8S network called the pod network.
+  
+  - **Atomic deployment of a Pods**:
+
+    - This means it's all-or-nothing deployment, succeeds or fails.
+
+  - **Short-lived and lob-lived Pods**:
