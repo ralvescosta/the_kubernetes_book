@@ -274,3 +274,5 @@ by Nigel Poulton & Pushkar Joglekar
   - **Init multi-container Pods**:
 
     - Running a special *init container* that's guaranteed to start and complete before your main app container. It's guaranteed to only run once.
+
+  - **Hands-on with Pods**:
