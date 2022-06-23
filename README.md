@@ -230,3 +230,47 @@ by Nigel Poulton & Pushkar Joglekar
     - This means it's all-or-nothing deployment, succeeds or fails.
 
   - **Short-lived and lob-lived Pods**:
+
+    - If any containers in long-lived Pod fail, the local kubelet may attempt to restart them. *Always* is the default restart policy and appropriate for most long-lived Pods.
+    - Appropriate container restar polices for short-lived Pods will usually be *Never* or *OnFailure*.
+    - *Deployment*, *StatefulSets* and *DaemonSets* are examples of controllers designed for long-lived Pods.
+    - *Jobs* and *Cronjobs* are examples of controllers designed for short-lived Pods.
+  
+  - **Pod immutability**:
+
+    - Pods are immutable objects. This means you can't modify them after they're deployed.
+    - Always replace a Pod for a new one.
+  
+  - **Pods and scaling**:
+
+    - *Horizontal Scaling*, when we need to scale we add or remove pods.
+
+  - **Multi-container Pods**:
+
+    - At a very high-level, every container should have a single clearly defined responsibility.
+
+    - K8S offers several well-defined multi-container Pod patterns:
+
+      - Sidecar pattern
+      - Adapter pattern
+      - Ambassador pattern
+      - Init pattern
+
+  - **Sidecar multi-container Pods**:
+
+    - The most popular multi-container patter.
+    - It has a main application container and a *sidecar* container.
+    - Used in the service mesh.
+
+  - **Adapter multi-container Pods**:
+   
+    - Help container to take non-standardized output from the main container and rejigs it into a format required by an external system.
+    - Exemplo: Send Nginx logs to Prometheus
+
+  - **Ambassador multi-container Pods**:
+
+    - Help containers brokers connectivity to an external system.
+
+  - **Init multi-container Pods**:
+
+    - Running a special *init container* that's guaranteed to start and complete before your main app container. It's guaranteed to only run once.
