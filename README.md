@@ -229,7 +229,7 @@ by Nigel Poulton & Pushkar Joglekar
 
     - This means it's all-or-nothing deployment, succeeds or fails.
 
-  - **Short-lived and lob-lived Pods**:
+  - **Short-lived and long-lived Pods**:
 
     - If any containers in long-lived Pod fail, the local kubelet may attempt to restart them. *Always* is the default restart policy and appropriate for most long-lived Pods.
     - Appropriate container restar polices for short-lived Pods will usually be *Never* or *OnFailure*.
@@ -276,3 +276,50 @@ by Nigel Poulton & Pushkar Joglekar
     - Running a special *init container* that's guaranteed to start and complete before your main app container. It's guaranteed to only run once.
 
   - **Hands-on with Pods**:
+
+    - When we need to interact with K8S whe use the manifest files, in the manifest files we always going have for main keys:
+
+      - kind - Kubernetes object type
+      - apiVersion - <api-group>/<version> - most used <api-groups> is in the *core* and in this case we do not need to specify the <api-group> only the version
+      - metadata - object metadata like: name, label, namespace. If namespace is not specified the K8S will use the default namespace in the current context
+      - spec - here we define the services/containers.
+
+    - To deploy a Pod in K8S we use this command:
+
+      ```bash
+        kubectl apply -f pod/pod.yml
+      ```
+
+    - Pod introspection:
+
+      ```bash
+        kubectl get pods
+
+        kubectl get pod <pod-name>
+
+        kubectl get pods <pod-name> -o json
+
+        kubectl describe pods <pod-name>
+
+        kubectl logs <pod-name>
+
+        kubectl logs <pod-name> --container <container-name>
+
+        kubectl exec <pod-name> -- ps aux
+
+        kubectl exec -it <pod-name> -- sh
+      ```
+
+  - **Pod Hostname**:
+
+    - Every container in a Pod inherits its hostname from the name of the Pod.
+
+      ```bash
+        kubectl exec -it hello-pod -- sh
+
+        env | grep HOSTNAME
+      ```
+
+  - **Multi-container Pod using spec.initContainers**:
+
+    - if in our spec section we first declare a initContainers, the Pod will running this container first before and after will execute the container
