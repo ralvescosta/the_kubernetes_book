@@ -332,3 +332,27 @@ All the yaml files was provide by the book author in the [following repository](
 
     - Sidecar containers are architecturally different to init containers. The sidecar container is long-lived and runs alongside the main application container
     for the entire lifecycle of the Pod.
+
+## 5: Virtual clusters with Namespaces
+
+  - Namespaces are a native way to divide a single Kubernetes cluster into multiple virtual clusters.
+
+  - Namespaces are designed as an easy way to apply *quotas* and *polices* to groups of objects, they're not designed for strong workload isolation.
+
+  - Objects will be namespaced when deployed into a cluster: Pod, Service, Deployment.
+
+  - This command bellow show all the K8S objects and which one is namespaced or not:
+
+    ```bash
+      kubectl api-resources
+
+      kubectl get namespaces
+
+      kubectl describe namespaces <namespace-name>
+
+      kubectl get services --namespace <name>
+    ```
+
+  - Namespace is not good to isolating hostile workloads;
+
+  **Creating and managing Namespaces**:
