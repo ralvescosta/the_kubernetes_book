@@ -1,6 +1,8 @@
 # The Kubernetes Book 2022 Edition
 by Nigel Poulton & Pushkar Joglekar
 
+All the yaml files was provide by the book author in the [following repository](https://github.com/nigelpoulton/TheK8sBook)
+
 ## 2: Kubernetes principles of operation
 
 ### Control Plane and Worker Nodes
