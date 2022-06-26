@@ -320,6 +320,13 @@ by Nigel Poulton & Pushkar Joglekar
         env | grep HOSTNAME
       ```
 
-  - **Multi-container Pod using spec.initContainers**:
+  - **Multi-container Pod - using spec.initContainers**:
+    
+    - InitContainers are used when we need to run a container before the main application
 
     - if in our spec section we first declare a initContainers, the Pod will running this container first before and after will execute the container
+
+  - **Multi-container Pod - sidecar container**
+
+    - Sidecar containers are architecturally different to init containers. The sidecar container is long-lived and runs alongside the main application container
+    for the entire lifecycle of the Pod.
