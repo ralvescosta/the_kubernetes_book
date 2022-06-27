@@ -356,3 +356,40 @@ All the yaml files was provide by the book author in the [following repository](
   - Namespace is not good to isolating hostile workloads;
 
   **Creating and managing Namespaces**:
+
+    - Namespace are first-class resources in the *core* v1 API group.
+
+    - Create a new namespace with the following imperative commando:
+      ```
+        kubectl create ns hydra
+      ```
+    - Create a new namespace with declarative YAML
+
+      ```
+        kubectl apply -f namespaces/shield-ns.yml
+      ```
+    - To delete namespace
+
+      ```
+        kubectl delete ns hydra
+      ```
+  **Deploy to Namespaces**
+
+    - Imperative way we add in our commands -n or --namespace
+    - Declarative way we add in our YAML file
+
+      ```yaml
+        metadata:
+          namespace: shield
+      ```
+      ```bash
+        kubectl apply -f namespaces/shield-app.yaml
+      ```
+      ```bash
+        kubectl delete -f namespaces/shield-app.yaml
+      ```
+
+    - To configure the default namespace in our kubectl context
+      ```bash
+        kubectl config set-context --current --namespace default
+      ```
