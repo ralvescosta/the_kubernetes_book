@@ -393,3 +393,8 @@ All the yaml files was provide by the book author in the [following repository](
       ```bash
         kubectl config set-context --current --namespace default
       ```
+
+## 6: Kubernetes Deployments
+
+  - Kubernetes offers a several controllers that augment Pods with important capabilities. The *Deployment* controller is specifically designed for stateless apps. 
+
