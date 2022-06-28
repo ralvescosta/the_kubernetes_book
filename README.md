@@ -398,3 +398,25 @@ All the yaml files was provide by the book author in the [following repository](
 
   - Kubernetes offers a several controllers that augment Pods with important capabilities. The *Deployment* controller is specifically designed for stateless apps. 
 
+  ```bash
+    kubectl apply -f deploy.yml
+
+    kubectl get deployments hello-deploy --watch
+
+    kubectl describe deployments hello-deploy
+
+    kubectl get replicasets OR kubectl get rs
+
+    kubectl describe rs hello-deploy
+
+    kubectl apply -f svc.yml
+
+    kubectl scale deploy hello-deploy --replicas 5
+  ```
+
+  - To discovery the internal ip with minikube use this command:
+
+  ```bash
+    minikube ip
+  ```
+
