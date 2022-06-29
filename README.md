@@ -420,3 +420,26 @@ All the yaml files was provide by the book author in the [following repository](
     minikube ip
   ```
 
+  - To stop a rollout in progress
+
+  ```bash
+    kubectl rollout pouse deployment hello-deploy
+  ```
+
+  - To resume rollout
+
+  ```bash
+    kubectl rollout resume deployment hello-deploy
+  ```
+
+  - To show the rollout history
+
+  ```bash
+    kubectl rollout history deployment hello-deploy
+  ```
+
+  - To rollback to a older revision
+
+  ```bash
+    kubectl rollout undo deployment hello-deploy --to-revision=1
+  ```
