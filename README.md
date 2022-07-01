@@ -443,3 +443,18 @@ All the yaml files was provide by the book author in the [following repository](
   ```bash
     kubectl rollout undo deployment hello-deploy --to-revision=1
   ```
+
+## 7: Kubernetes Services
+
+  - Service is a Kubernetes Object which is responsible for providing stable and reliable networking for a set of unreliable Pods.
+
+  - Every Service get its own **stable IP address**, its own **stable DNS name** and its own **stable port**
+
+  - As Pods come-and-go, Services dynamically update the list of healthy matching Pods. They do this through a combination of label selection and construct a called an *Endpoint* object.
+
+  - To create a NodePort Service imperative way
+
+  ```bash
+    kubectl expose deployment <deployment-name> --type=NodePort service/<service-name> exposed
+  ```
+
