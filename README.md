@@ -458,3 +458,14 @@ All the yaml files was provide by the book author in the [following repository](
     kubectl expose deployment <deployment-name> --type=NodePort service/<service-name> exposed
   ```
 
+## 8: Ingres
+
+  - Ingress is all about accessing multiple web applications through a single LoadBalancer Service.
+
+  - To use ingres on minikube, we need to enable it.
+
+    ```base
+      minikube addons enable ingress
+    ```
+
+## 9: Service discovery deep dive
