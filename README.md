@@ -469,3 +469,13 @@ All the yaml files was provide by the book author in the [following repository](
     ```
 
 ## 9: Service discovery deep dive
+
+  - To list hte pods running the cluster DNS
+
+    ```bash
+      kubectl get pods -n kube-system -l k8s-app=kube-dns
+
+      kubectl get deployments -n kube-system -l k8s-app=kube-dns
+
+      kubectl get services -n kube-system -l k8s-app=kube-dns
+    ```
