@@ -479,3 +479,108 @@ All the yaml files was provide by the book author in the [following repository](
 
       kubectl get services -n kube-system -l k8s-app=kube-dns
     ```
+## 10: Kubernetes storage
+
+## 11: ConfigMaps and Secretes
+
+  - Create ConfigMaps imperative way:
+
+  ```bash
+    kubectl create configmap tempmap1 --from-literal shortname=AOS --from-literal longname="Agents of Shield"
+
+    kubectl create configmap tempmap2 --from-file ./configmaps/cmfile.txt
+  ```
+
+  - Create ConfigMaps declarative way:
+
+  ```yaml
+    kind: ConfigMap
+    apiVersion: v1
+    metadata:
+      name: multimap
+    data:
+      some-key: same-value
+      other-key: other-value
+  ```
+
+  ```bash
+    kubectl apply -f c_file.yml 
+  ```
+
+  - Injecting ConfigMap data into Pods and containers
+
+    - Inject in environment variable
+
+      We can configure the ConfigMaps inside the Pod manifest
+
+      ```yaml
+        kind: Pod
+        apiVersion: v1
+        metadata:
+          labels:
+            context: configs
+          name: name
+        spec:
+          containers:
+            - name: crt1
+              image: busybox
+              command: ["sleep"]
+              args: ["infinity"]
+              env:
+                - name: FIRSTNAME
+                  valueFrom:
+                    configMapKeyRef:
+                      name: configMapName
+                      key: configMapKeyName
+                - name: LASTNAME
+                  valueFrom:
+                    configMapKeyRef:
+                      name: configMapName
+                      key: configMapKeyName
+      ```
+    - Inject with volumes
+
+      To inject the ConfigMaps in a volume/file inside the container.
+
+      ```yaml
+        apiVersion: v1
+        kind: Pod
+        metadata:
+          name: podName
+        spec:
+          volumes:
+            - name: volName
+              configMap:
+                name: configMapName
+          containers:
+            - name: ctr
+              image: nginx
+              volumeMounts:
+                - name: volName
+                  mountPath: etc/name
+      ```
+  
+  - Create Secret
+
+    - Imperative Way:
+
+    ```bash
+      kubectl create secret generic creds --from-literal user=nigelpoulton --from-literal pwd=Password123
+    ```
+
+    -  Declarative way:
+
+    ```yaml
+      kind: Secret
+      apiVersion: v1
+      metadata:
+        name: my-secret
+        labels:
+          context: secret
+      type: Opaque
+      data: #if we use "stringData" instead of data we can enter our secrets in plainText
+        pwd: PASS_IN_BASE64
+        user: USER_IN_BASE64
+    ```
+
+  - The best way to inject secrets inside the pod is using a volume called *Secret Volume*. This kind o volume is read-only to prevent containers and applications accidentally mutating them.
