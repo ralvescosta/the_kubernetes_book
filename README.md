@@ -584,3 +584,23 @@ All the yaml files was provide by the book author in the [following repository](
     ```
 
   - The best way to inject secrets inside the pod is using a volume called *Secret Volume*. This kind o volume is read-only to prevent containers and applications accidentally mutating them.
+
+## 12: StatefulSet
+
+- Create a ServiceClass
+
+```bash
+kubectl apply -f statefulsets/gcp-sc.yml
+```
+
+- Create headless Service
+
+```bash
+kubectl apply -f headless-svc.yml
+```
+
+- Create StatefulSet
+
+```bash
+kubectl apply -f 
+```
