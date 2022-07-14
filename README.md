@@ -604,3 +604,5 @@ kubectl apply -f headless-svc.yml
 ```bash
 kubectl apply -f 
 ```
+
+## 13: API security and RBAC
